@@ -53,8 +53,6 @@ def Main():
         help=_("font"), default='Sans')
     parser.add_option("-n", "--no-hide", action="store_true",
         dest="nohide", default=False, help=_("do not hide"))
-#    parser.add_option("-n", "--no-hide", action="store_true", dest="nohide",
-#        help=_("do not hide"), default=False)
     #parser.add_option("-c", "--color", type="string",
         #dest="color", help=_("color"), default='TODO')
     (options, args) = parser.parse_args()
