@@ -46,18 +46,10 @@ then
     esac
 fi
 
-# get screen dimensions
-IFS='x' read sw sh < <(xdpyinfo | grep dimensions | grep -o '[0-9x]*' | head -n1)
-# get window geometry
-read wx wy ww wh < <(wmctrl -lG | grep $win | sed 's/^[^ ]* *[^ ]* //;s/[^0-9 ].*//;')
-# compute and set new coordinates
-wx=$(($sw/2-$ww/2))
-wy=$(($sh-$wh))
-wmctrl -r $win -e 0,$wx,$wy,$ww,$wh
-
 (
 # start screenkey
-"$(dirname "$(readlink -f "$0")")/screenkey/screenkey" $@ >/dev/null 2>&1
+#"$(dirname "$(readlink -f "$0")")/screenkey/screenkey" $@ >/dev/null 2>&1
+#./screenkey/screenkey -n >/dev/null 2>&1
 
 if [[ $duration == W* ]]
 then
@@ -69,7 +61,8 @@ else
 fi
 
 # start recording the window
-byzanz-record -x $wx -y $wy -w $ww -h $wh $ENDCMD "$ENDSTR" out.gif 2> /dev/null
+# byzanz-record -x $wx -y $wy -w $ww -h $wh $ENDCMD "$ENDSTR" out.gif 2> /dev/null
+byzanz-record -x 0 -y 40 -w 800 -h 300 -d 20 out.gif 2> /dev/null
 
 # finished
 ps ax | grep 'screenkey' | grep -o '^[0-9 ]*' | head -n1 | xargs kill

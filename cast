@@ -1,0 +1,18 @@
+
+echo "Make sure you have started and placed screenkey in a likable place in the top left"
+echo "Default recording is the top left of the screen"
+echo "./screenkey/screenkey -n > /dev/null 2>&1 &"
+
+echo "Starting Momentarily"
+sleep 3
+echo "In 3"
+sleep 1
+echo "2"
+sleep 1
+echo "1"
+sleep 1
+echo "Started recording"
+
+byzanz-record -x 0 -y 40 -w 800 -h 300 -d 10 out.gif 2> /dev/null
+
+echo "Recording finished"
